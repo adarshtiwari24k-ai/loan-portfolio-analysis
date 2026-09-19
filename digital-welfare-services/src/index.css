@@ -1,0 +1,67 @@
+@import 'tailwindcss';
+
+@theme {
+  --font-sans: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  /* Government service palette: deep navy primary, restrained slate/grey, single accent */
+  --color-navy-950: #0b1a33;
+  --color-navy-900: #0f2547;
+  --color-navy-800: #163863;
+  --color-navy-700: #1c4a82;
+  --color-navy-600: #275c9e;
+  --color-navy-500: #3672bb;
+
+  --color-slate-50: #f7f8fa;
+  --color-slate-100: #eef0f3;
+  --color-slate-200: #dfe3e8;
+  --color-slate-300: #c6cbd3;
+  --color-slate-400: #9aa2ae;
+  --color-slate-500: #6b7382;
+  --color-slate-600: #4d5563;
+  --color-slate-700: #363d49;
+  --color-slate-800: #232833;
+  --color-slate-900: #14171e;
+
+  --color-accent-600: #0b7a6b;
+  --color-accent-500: #0e9481;
+  --color-accent-100: #e2f4f1;
+
+  --color-amber-600: #a5620c;
+  --color-amber-100: #fbeed7;
+
+  --color-red-600: #b3261e;
+  --color-red-100: #fbe6e5;
+}
+
+html {
+  color-scheme: light;
+}
+
+body {
+  margin: 0;
+  background-color: var(--color-slate-50);
+  color: var(--color-slate-800);
+  -webkit-font-smoothing: antialiased;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-navy-600);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  background: var(--color-navy-900);
+  color: white;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0 0 6px 0;
+}
+
+.skip-link:focus {
+  left: 0;
+}
