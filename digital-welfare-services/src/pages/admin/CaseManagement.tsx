@@ -6,6 +6,7 @@ import { StatusBadge } from '../../components/ui/StatusBadge'
 import { Badge } from '../../components/ui/Badge'
 import { Button } from '../../components/ui/Button'
 import { Alert } from '../../components/ui/Alert'
+import { DocumentLink } from '../../components/ui/DocumentLink'
 import { applicationService } from '../../services/applicationService'
 import { caseService } from '../../services/caseService'
 import { getServiceById } from '../../config/services'
@@ -142,7 +143,7 @@ export function CaseManagement() {
                   <ul className="divide-y divide-slate-100">
                     {application.documents.map((doc) => (
                       <li key={doc.id} className="flex items-center justify-between py-2 text-sm">
-                        <span className="text-slate-800">{doc.fileName}</span>
+                        <DocumentLink document={doc} />
                         <span className="text-slate-400">{formatFileSize(doc.fileSize)}</span>
                       </li>
                     ))}

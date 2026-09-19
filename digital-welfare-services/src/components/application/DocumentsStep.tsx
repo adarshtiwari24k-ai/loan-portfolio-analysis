@@ -3,6 +3,7 @@ import { FileText, Loader2, Trash2, UploadCloud } from 'lucide-react'
 import type { DocumentMeta, RequiredDocumentConfig } from '../../types'
 import { formatFileSize } from '../../lib/format'
 import { Alert } from '../ui/Alert'
+import { DocumentLink } from '../ui/DocumentLink'
 
 const ACCEPTED_TYPES = ['application/pdf', 'image/jpeg', 'image/png']
 const ACCEPTED_EXTENSIONS = '.pdf,.jpg,.jpeg,.png'
@@ -55,8 +56,9 @@ export function DocumentsStep({
   return (
     <div className="space-y-6">
       <Alert tone="info" title="Demo mode">
-        Documents remain in this browser and are not uploaded to a government server. Only the file
-        name, type and size are stored.
+        Documents remain in this browser and are not uploaded to a government server. They can be
+        opened for preview by anyone using this app in this same browser, including on the officer
+        portal, but never leave your device.
       </Alert>
 
       {error && (
@@ -114,8 +116,8 @@ export function DocumentsStep({
                       className="flex items-center justify-between rounded-md bg-slate-50 px-3 py-2 text-sm"
                     >
                       <span className="flex items-center gap-2 text-slate-800">
-                        <FileText className="h-4 w-4 text-slate-400" />
-                        {doc.fileName}
+                        <FileText className="h-4 w-4 shrink-0 text-slate-400" />
+                        <DocumentLink document={doc} />
                         <span className="text-slate-400">({formatFileSize(doc.fileSize)})</span>
                       </span>
                       <span className="flex items-center gap-3">

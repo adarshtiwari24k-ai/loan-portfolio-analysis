@@ -4,6 +4,7 @@ import { Card, CardBody, CardHeader } from '../../components/ui/Card'
 import { StatusBadge } from '../../components/ui/StatusBadge'
 import { StatusTimeline } from '../../components/ui/StatusTimeline'
 import { Badge } from '../../components/ui/Badge'
+import { DocumentLink } from '../../components/ui/DocumentLink'
 import type { ServiceDefinition, WelfareApplication } from '../../types'
 import { formatDateTime, formatFileSize } from '../../lib/format'
 
@@ -92,7 +93,7 @@ export function ApplicationStatusView({
               <ul className="divide-y divide-slate-100">
                 {application.documents.map((doc) => (
                   <li key={doc.id} className="flex items-center justify-between py-2 text-sm">
-                    <span className="text-slate-800">{doc.fileName}</span>
+                    <DocumentLink document={doc} />
                     <span className="text-slate-400">{formatFileSize(doc.fileSize)}</span>
                   </li>
                 ))}

@@ -2,6 +2,7 @@ import type { ReactNode } from 'react'
 import type { ServiceDefinition, WelfareApplication } from '../../types'
 import { Card, CardBody, CardHeader } from '../ui/Card'
 import { Alert } from '../ui/Alert'
+import { DocumentLink } from '../ui/DocumentLink'
 import { EligibilityResultPanel } from './EligibilityResultPanel'
 import { formatDate, formatFileSize } from '../../lib/format'
 
@@ -102,7 +103,7 @@ export function ReviewStep({ service, application, answers, onEdit }: ReviewStep
           <ul className="space-y-1.5">
             {application.documents.map((doc) => (
               <li key={doc.id} className="flex items-center justify-between text-sm">
-                <span className="text-slate-800">{doc.fileName}</span>
+                <DocumentLink document={doc} />
                 <span className="text-slate-400">{formatFileSize(doc.fileSize)}</span>
               </li>
             ))}

@@ -14,6 +14,7 @@ import { EligibilityResultPanel } from '../../components/application/Eligibility
 import { ApplicationStatusView } from './ApplicationStatusView'
 import { getServiceById } from '../../config/services'
 import { applicationService } from '../../services/applicationService'
+import { saveDocumentBlob, deleteDocumentBlob } from '../../services/documentStore'
 import { validateStepFields } from '../../lib/validation'
 import { demoAnswers, demoDocuments, buildDemoFile } from '../../config/demoData'
 import type { WelfareApplication } from '../../types'
@@ -229,6 +230,8 @@ export function ApplicationWizard({ serviceId, applicationId }: ApplicationWizar
         fileSize: file.size,
         fileType: file.type,
       })
+      const newDocument = updated.documents[updated.documents.length - 1]
+      await saveDocumentBlob(newDocument.id, file)
       setApplication(updated)
     } finally {
       setUploadingRequirementId(null)
@@ -237,6 +240,7 @@ export function ApplicationWizard({ serviceId, applicationId }: ApplicationWizar
 
   async function handleRemoveDocument(documentId: string) {
     const updated = await applicationService.removeDocument(application!.id, documentId)
+    await deleteDocumentBlob(documentId)
     setApplication(updated)
   }
 
@@ -274,6 +278,9 @@ export function ApplicationWizard({ serviceId, applicationId }: ApplicationWizar
           fileSize: file.size,
           fileType: file.type,
         })
+        const newDocument = updated.documents[updated.documents.length - 1]
+        // eslint-disable-next-line no-await-in-loop
+        await saveDocumentBlob(newDocument.id, file)
         setApplication(updated)
       }
     } finally {
