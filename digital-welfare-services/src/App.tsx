@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { HashRouter, Route, Routes } from 'react-router-dom'
 import { ErrorBoundary } from './components/ErrorBoundary'
 import { AuthProvider } from './context/AuthContext'
 import { NotificationProvider } from './context/NotificationContext'
@@ -18,7 +18,7 @@ import { NotFound } from './pages/NotFound'
 function App() {
   return (
     <ErrorBoundary>
-      <BrowserRouter>
+      <HashRouter>
         <AuthProvider>
           <NotificationProvider>
             <Routes>
@@ -65,7 +65,7 @@ function App() {
             </Routes>
           </NotificationProvider>
         </AuthProvider>
-      </BrowserRouter>
+      </HashRouter>
     </ErrorBoundary>
   )
 }
